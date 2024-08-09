@@ -1,9 +1,9 @@
-import assert from "assert"
+import assert from "assert";
 
 export default {
-	ModuleName: "lazrius-foundry-template",
+	ModuleName: "fabula-effect",
 	IsModule: true, // If you are developing a system rather than a module, change this to false
-}
+};
 
 // Pop some fairly universal types that we might use
 

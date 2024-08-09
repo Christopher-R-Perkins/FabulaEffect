@@ -1,15 +1,15 @@
 {
-	"name": "lazrius-foundry-template",
-	"title": "Lazrius' FoundryVTT Template",
-	"description": ".",
-	"version": "1.0.0",
-	"author": "Laz#9427",
-	"scripts": ["bundle.js"],
-	"styles": ["lazrius-foundry-template.css"],
-	"languages": [],
-	"minimumCoreVersion": "0.8.8",
-	"compatibleCoreVersion": "0.8.8",
-	"url": "https://github.com/Lazrius/FoundryVTT-Typescript-Module-Template",
-	"manifest": "https://raw.githubusercontent.com/Lazrius/FoundryVTT-Typescript-Module-Template/master/Source/module.json",
-	"download": "https://raw.githubusercontent.com/Lazrius/FoundryVTT-Typescript-Module-Template/master/Package/lazrius-foundry-template-v1.0.0.zip"
+    "name": "fabula-effect",
+    "title": "Fabula Effect",
+    "description": ".",
+    "version": "0.0.1",
+    "author": "Christopher",
+    "scripts": ["bundle.js"],
+    "styles": ["fabula-effect.css"],
+    "languages": [],
+    "minimumCoreVersion": "0.11.0",
+    "compatibleCoreVersion": "0.11.0",
+    "url": "https://github.com/Christopher-R-Perkins/FabulaEffect",
+    "manifest": "https://raw.githubusercontent.com/Christopher-R-Perkins/FabulaEffect/master/Source/module.json",
+    "download": "https://raw.githubusercontent.com/Christopher-R-Perkins/FabulaEffect/master/Package/fabula-effect-v0.0.1.zip"
 }
