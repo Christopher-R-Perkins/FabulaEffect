@@ -22,6 +22,21 @@ Formula subroutines are invoked and replaced before any other actions occur. The
 
 ### List of Subroutines
 
+#### actorLevel
+
+```
+$actorLevel[id?]
+```
+
+The `actorLevel` subroutine returns the level of an actor and has one optional parameter `id?` which is the id of the actor you wish to retrieve the level of. If you are applying an effect directly to the actor whose level you want retrieve, just use `@system.level.value`. This is intended to be used on items that require the actors level they are attached to or to be attached to another actor.
+
+If getting the level of an actor this effect is not attached to(an item used by the actor), this will not automatically update the effect when that actors level changes. You can update the actor manually by changing any value on the sheet, or reload.
+
+**Core Rules This Applies To:**
+
+- Faithful Companion (though its already integrated manually, this could be set up for automatic)
+- 🤷
+
 #### levelBonus
 
 ```
@@ -58,3 +73,4 @@ If `actorId?` is present, uses the actor with `actorId` instead if it exists. Th
 - Twin Sheilds (Extra damage)
 - Companion (though its already integrated manually, this could be set up for automatic)
 - Deep Pockets Heroic Skill (Less Inventory Points on items)
+- Heroic Companion (Can act as a toggle for the extra HP)
