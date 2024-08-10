@@ -1,40 +1,39 @@
 {
-    "title": "Fabula Effect",
-    "name": "fabula-effect",
-    "description": "Extends projectfu to handle more variety in effect formulas by adding subroutines.",
-    "version": "0.0.1",
-    "scripts": ["bundle.js"],
-    "styles": ["fabula-effect.css"],
-    "url": "https://github.com/Christopher-R-Perkins/FabulaEffect",
-    "manifest": "https://raw.githubusercontent.com/Christopher-R-Perkins/FabulaEffect/master/Source/module.json",
-    "download": "https://raw.githubusercontent.com/Christopher-R-Perkins/FabulaEffect/master/Package/fabula-effect-v0.0.1.zip",
-    "relationships": {
-        "systems": [
-            {
-                "id": "projectfu",
-                "type": "system",
-                "compatibility": {}
-            }
-        ],
-        "requires": [
-            {
-                "id": "lib-wrapper",
-                "type": "module"
-            }
-        ]
-    },
-    "id": "fabula-effect",
-    "compatibility": {
-        "minimum": "11",
-        "verified": "11"
-    },
-    "authors": [
-        {
-            "name": "Christopher Perkins",
-            "discord": ".quasari",
-            "email": "Christopher@Perkins.guru",
-            "url": "https://perkins.guru"
-        }
-    ]
+	"title": "Fabula Effect",
+	"name": "fabula-effect",
+	"description": "Extends projectfu to handle more variety in effect formulas by adding subroutines.",
+	"version": "0.1.0",
+	"scripts": ["bundle.js"],
+	"styles": ["fabula-effect.css"],
+	"url": "https://github.com/Christopher-R-Perkins/FabulaEffect",
+	"manifest": "https://raw.githubusercontent.com/Christopher-R-Perkins/FabulaEffect/master/Source/module.json",
+	"download": "https://raw.githubusercontent.com/Christopher-R-Perkins/FabulaEffect/v0.1.0/dist/fabula-effect-v0.1.0.zip",
+	"relationships": {
+		"systems": [
+			{
+				"id": "projectfu",
+				"type": "system",
+				"compatibility": {}
+			}
+		],
+		"requires": [
+			{
+				"id": "lib-wrapper",
+				"type": "module"
+			}
+		]
+	},
+	"id": "fabula-effect",
+	"compatibility": {
+		"minimum": "11",
+		"verified": "11"
+	},
+	"authors": [
+		{
+			"name": "Christopher Perkins",
+			"discord": ".quasari",
+			"email": "Christopher@Perkins.guru",
+			"url": "https://perkins.guru"
+		}
+	]
 }
-

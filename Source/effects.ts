@@ -1,42 +1,64 @@
 import Logger from "./Utils/Logger";
 import { FUActor, FUData, FUSkill, ReplaceFormulaDataWrapperFn, isFUActor, isFUSkill } from "./types";
 
-const subroutines: { [couroutine: string]: (args: string, data: unknown) => string } = {
-	levelBonus: (args: string, data: unknown): string => {
-		const actor = (data as FUData).parent;
+const splitArgs = (args: string): string[] => args.split(",").map((str) => str.trim());
 
-		const bonuses = args.split(",").map((str) => str.trim());
-		if (bonuses.length < 2) {
+const getActor = (data: FUData, id?: string): FUActor | null => {
+	if (id) {
+		const actor = (Actor as any).get(id);
+		if (actor) return actor;
+		Logger.Warn(`${id} did not retrieve a valid actor.`);
+	}
+
+	if (isFUActor(data)) return data;
+	if (isFUActor(data.parent)) return data.parent;
+	return null;
+};
+
+const subroutines: { [couroutine: string]: (args: string, data: unknown) => string } = {
+	actorLevel: (args: string, data: unknown): string => {
+		const [id] = splitArgs(args);
+		const actor = getActor(data as FUData, id);
+
+		if (!actor) {
+			Logger.Err(
+				`actorLevel formula subroutine invoked on object that is not an actor, is not a child an of an actor, nor was provided a valid actor id: ${data}`
+			);
+			return "0";
+		}
+
+		return String(actor.system.level.value);
+	},
+
+	levelBonus: (args: string, data: unknown): string => {
+		const actor = getActor(data as FUData);
+
+		const [lvl20, lvl40] = splitArgs(args);
+		if (lvl20 === undefined || lvl40 === undefined) {
 			Logger.Err(`levelBonus formula subroutine needs at least two arguments, attached to ${data}.`);
 			return "0";
 		}
 
-		if (!isFUActor(actor)) {
-			Logger.Err(`levelBonus formula subroutine invoked on object no child of an actor: ${data}`);
+		if (!actor) {
+			Logger.Err(
+				`levelBonus formula subroutine invoked on object that is not an actor, nor is a child an of an actor: ${data}`
+			);
 			return "0";
 		}
 		const level = actor.system.level.value;
 
-		const [lvl20, lvl40] = bonuses;
 		if (level >= 40) return lvl40;
 		if (level >= 20) return lvl20;
 		return "0";
 	},
 
 	skillLevel: (args: string, data: unknown): string => {
-		const parent = (data as FUData).parent;
-		const [skillName, id] = args.split(",").map((str) => str.trim());
-		let actor: FUActor;
+		const [skillName, id] = splitArgs(args);
+		const actor = getActor(data as FUData, id);
 
-		if (id && (actor = (Actor as any).get(id))) {
-			actor;
-		} else if (isFUActor(data)) {
-			actor = data;
-		} else if (isFUActor(parent)) {
-			actor = parent;
-		} else {
+		if (!actor) {
 			Logger.Err(
-				`skillLevel formula subroutine invoked on object that is not an actor nor is a child an of an actor: ${data}`
+				`skillLevel formula subroutine invoked on object that is not an actor, is not a child an of an actor, nor was provided a valid actor id: ${data}.`
 			);
 			return "0";
 		}
