@@ -7,9 +7,19 @@
     "scripts": ["bundle.js"],
     "styles": ["fabula-effect.css"],
     "languages": [],
-    "minimumCoreVersion": "0.11.0",
-    "compatibleCoreVersion": "0.11.0",
+    "minimumCoreVersion": "11.0.0",
+    "compatibleCoreVersion": "11.0.0",
     "url": "https://github.com/Christopher-R-Perkins/FabulaEffect",
     "manifest": "https://raw.githubusercontent.com/Christopher-R-Perkins/FabulaEffect/master/Source/module.json",
-    "download": "https://raw.githubusercontent.com/Christopher-R-Perkins/FabulaEffect/master/Package/fabula-effect-v0.0.1.zip"
+    "download": "https://raw.githubusercontent.com/Christopher-R-Perkins/FabulaEffect/master/Package/fabula-effect-v0.0.1.zip",
+    "relationships": {
+        "systems": [
+            {
+                "id": "projectfu",
+                "type": "system",
+                "compatibility": {}
+            }
+        ]
+    }
 }
+
