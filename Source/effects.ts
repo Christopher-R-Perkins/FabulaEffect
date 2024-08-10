@@ -1,4 +1,5 @@
 import Logger from "./Utils/Logger";
+import { attachData } from "./Utils/Updater";
 import { FUActor, FUData, FUSkill, ReplaceFormulaDataWrapperFn, isFUActor, isFUSkill } from "./types";
 
 const splitArgs = (args: string): string[] => args.split(",").map((str) => str.trim());
@@ -6,7 +7,10 @@ const splitArgs = (args: string): string[] => args.split(",").map((str) => str.t
 const getActor = (data: FUData, id?: string): FUActor | null => {
 	if (id) {
 		const actor = (Actor as any).get(id);
-		if (actor) return actor;
+		if (actor) {
+			attachData(id, data);
+			return actor;
+		}
 		Logger.Warn(`${id} did not retrieve a valid actor.`);
 	}
 

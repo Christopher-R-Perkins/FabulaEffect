@@ -3,6 +3,8 @@ import PreloadTemplates from "./PreloadTemplates";
 import { RegisterSettings } from "./Utils/Settings";
 import { initFabEffect } from "./fab-effect";
 import { setupPatching } from "./patching";
+import { FUActor } from "./types";
+import { updateAttached } from "./Utils/Updater";
 
 Hooks.once("init", async () => {
 	Logger.Log("Initializing Fabula Effect.");
@@ -10,6 +12,10 @@ Hooks.once("init", async () => {
 	initFabEffect();
 	setupPatching();
 	// await PreloadTemplates();
+});
+
+Hooks.on("updateActor", (actor: FUActor) => {
+	updateAttached(actor.id);
 });
 
 // Hooks.once("setup", () => {
