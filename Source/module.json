@@ -1,14 +1,10 @@
 {
-    "name": "fabula-effect",
     "title": "Fabula Effect",
-    "description": ".",
+    "name": "fabula-effect",
+    "description": "Extends projectfu to handle more variety in effect formulas by adding subroutines.",
     "version": "0.0.1",
-    "author": "Christopher",
     "scripts": ["bundle.js"],
     "styles": ["fabula-effect.css"],
-    "languages": [],
-    "minimumCoreVersion": "11.0.0",
-    "compatibleCoreVersion": "11.0.0",
     "url": "https://github.com/Christopher-R-Perkins/FabulaEffect",
     "manifest": "https://raw.githubusercontent.com/Christopher-R-Perkins/FabulaEffect/master/Source/module.json",
     "download": "https://raw.githubusercontent.com/Christopher-R-Perkins/FabulaEffect/master/Package/fabula-effect-v0.0.1.zip",
@@ -19,7 +15,26 @@
                 "type": "system",
                 "compatibility": {}
             }
+        ],
+        "requires": [
+            {
+                "id": "lib-wrapper",
+                "type": "module"
+            }
         ]
-    }
+    },
+    "id": "fabula-effect",
+    "compatibility": {
+        "minimum": "11",
+        "verified": "11"
+    },
+    "authors": [
+        {
+            "name": "Christopher Perkins",
+            "discord": ".quasari",
+            "email": "Christopher@Perkins.guru",
+            "url": "https://perkins.guru"
+        }
+    ]
 }
 

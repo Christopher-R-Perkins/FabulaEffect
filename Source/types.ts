@@ -10,7 +10,23 @@ export type ReplaceFormulaDataWrapperFn = (
 
 export interface FUData {
 	parent: FUData | undefined;
+	name: string;
 }
+
+export interface FUSkill extends FUData {
+	type: "skill";
+	system: {
+		level: {
+			value: number;
+			min: number;
+			max: number;
+		};
+	};
+}
+
+export const isFUSkill = (data: unknown): data is FUSkill => {
+	return !!data && typeof data === "object" && "type" in data && data.type === "skill";
+};
 
 export interface FUActor extends FUData {
 	type: "character" | "npc";
@@ -19,6 +35,7 @@ export interface FUActor extends FUData {
 			value: number;
 		};
 	};
+	items: Map<string, FUData>;
 }
 
 export const isFUActor = (data: unknown): data is FUActor => {
