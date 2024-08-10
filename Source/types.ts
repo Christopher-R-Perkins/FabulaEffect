@@ -10,7 +10,9 @@ export type ReplaceFormulaDataWrapperFn = (
 
 export interface FUData {
 	parent: FUData | undefined;
+	id: string;
 	name: string;
+	prepareData: () => void;
 }
 
 export interface FUSkill extends FUData {
