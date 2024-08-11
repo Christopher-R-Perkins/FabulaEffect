@@ -1,4 +1,4 @@
-import { FUData } from "../types";
+import { FUData, isFUActor } from "../types";
 import Logger from "./Logger";
 
 class FUObjectUpdater {
@@ -30,7 +30,17 @@ class FUObjectUpdater {
 	public updateAttached(actorID: string): void {
 		if (!this.toBeUpdated[actorID]) return;
 
-		this.toBeUpdated[actorID].forEach((object) => object.prepareData());
+		this.toBeUpdated[actorID].forEach((object) => {
+			object.prepareData();
+
+			if (object.sheet.rendered) {
+				object.sheet.render(false);
+			}
+
+			if (object.parent && object.parent.sheet.rendered) {
+				object.parent.sheet.render(false);
+			}
+		});
 	}
 }
 
