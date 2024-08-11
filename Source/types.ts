@@ -13,6 +13,10 @@ export interface FUData {
 	id: string;
 	name: string;
 	prepareData: () => void;
+	sheet: {
+		render: (force: boolean) => void;
+		rendered: boolean;
+	};
 }
 
 export interface FUSkill extends FUData {
