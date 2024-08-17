@@ -2,12 +2,12 @@
 	"title": "Fabula Effect",
 	"name": "fabula-effect",
 	"description": "Extends projectfu to handle more variety in effect formulas by adding subroutines.",
-	"version": "0.1.2",
+	"version": "0.2.0",
 	"scripts": ["bundle.js"],
 	"styles": ["fabula-effect.css"],
 	"url": "https://github.com/Christopher-R-Perkins/FabulaEffect",
 	"manifest": "https://raw.githubusercontent.com/Christopher-R-Perkins/FabulaEffect/master/Source/module.json",
-	"download": "https://raw.githubusercontent.com/Christopher-R-Perkins/FabulaEffect/v0.1.2/dist/fabula-effect-v0.1.2.zip",
+	"download": "https://raw.githubusercontent.com/Christopher-R-Perkins/FabulaEffect/v0.2.0/dist/fabula-effect-v0.2.0.zip",
 	"relationships": {
 		"systems": [
 			{
