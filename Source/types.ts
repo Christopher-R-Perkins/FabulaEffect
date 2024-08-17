@@ -30,8 +30,24 @@ export interface FUSkill extends FUData {
 	};
 }
 
+export interface FuClass extends FUData {
+	type: 'class';
+	system: {
+		level: {
+			value: number;
+			min: number;
+			max: number;
+		};
+	};
+}
+
 export const isFUSkill = (data: unknown): data is FUSkill => {
 	return !!data && typeof data === "object" && "type" in data && data.type === "skill";
+};
+
+
+export const isFUClass = (data: unknown): data is FuClass => {
+	return !!data && typeof data === "object" && "type" in data && data.type === "class";
 };
 
 export interface FUActor extends FUData {

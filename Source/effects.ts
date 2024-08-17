@@ -1,6 +1,6 @@
 import Logger from "./Utils/Logger";
 import { attachData } from "./Utils/Updater";
-import { FUActor, FUData, FUSkill, ReplaceFormulaDataWrapperFn, isFUActor, isFUSkill } from "./types";
+import { FUActor, FUData, FUSkill, FuClass, ReplaceFormulaDataWrapperFn, isFUActor, isFUClass, isFUSkill } from "./types";
 
 const splitArgs = (args: string): string[] => args.split(",").map((str) => str.trim());
 
@@ -74,6 +74,61 @@ const subroutines: { [couroutine: string]: (args: string, data: unknown) => stri
 		if (!skill) return "0";
 		return String(skill.system.level.value);
 	},
+
+	classLevel: (args: string, data: unknown): string => {
+		const [className, id] = splitArgs(args);
+		const actor = getActor(data as FUData, id);
+
+		if (!actor) {
+			Logger.Err(
+				`actorLevel formula subroutine invoked on object that is not an actor, is not a child an of an actor, nor was provided a valid actor id: ${data}`
+			);
+			return "0";
+		}
+		
+		const fuClass = [...actor.items.values()].find<FuClass>((item): item is FuClass =>  {
+			return item.name === className && isFUClass(item);
+		});
+		
+		if (!fuClass) return "0";
+		return String(fuClass.system.level.value);
+	},
+
+	classesLevel: (args: string, data: unknown): string => {
+		const [id] = splitArgs(args);
+		const actor = getActor(data as FUData, id);
+
+		if (!actor) {
+			Logger.Err(
+				`actorLevel formula subroutine invoked on object that is not an actor, is not a child an of an actor, nor was provided a valid actor id: ${data}`
+			);
+			return "0";
+		}
+		
+		const totalClassesValue = [...actor.items.values()].filter<FuClass>((item): item is FuClass => {
+			return isFUClass(item);
+		}).reduce( (prev, curr) => prev + curr.system.level.value, 0);
+		
+		return String(totalClassesValue);
+	},
+	
+	totalClasses: (args: string, data: unknown): string => {
+		const [id] = splitArgs(args);
+		const actor = getActor(data as FUData, id);
+
+		if (!actor) {
+			Logger.Err(
+				`actorLevel formula subroutine invoked on object that is not an actor, is not a child an of an actor, nor was provided a valid actor id: ${data}`
+			);
+			return "0";
+		}
+		
+		const numberOfClasses = [...actor.items.values()].filter<FuClass>((item): item is FuClass => {
+			return isFUClass(item);
+		}).length;
+		
+		return String(numberOfClasses);
+	}
 };
 
 export const replaceFormulaData: ReplaceFormulaDataWrapperFn = (wrapped, formula, data, options) => {

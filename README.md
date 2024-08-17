@@ -74,3 +74,45 @@ If `actorId?` is present, uses the actor with `actorId` instead if it exists. Th
 - Companion (though its already integrated manually, this could be set up for automatic)
 - Deep Pockets Heroic Skill (Less Inventory Points on items)
 - Heroic Companion (Can act as a toggle for the extra HP)
+
+#### classLevel
+
+```
+$classLevel[className, actorId?]
+```
+
+The `classLevel` subroutine returns the class level value for `className` class on the actor related to the effect (Either what its attached to or the parent of what it is attached to). `className` is case sensitive and requires spaces as needed. To get the Guardian class level you would use `$classLevel[Guardian]`.
+
+If `actorId?` is present, uses the actor with `actorId` instead if it exists. This will not automatically update the effect when the specified actor does if the item is not attached, to force an update change any field on the attached actor or reload.
+
+**Core Rules This Applies To:**
+
+- 🤷
+
+#### classesLevel
+
+```
+$classesLevel[actorId?]
+```
+
+The `classesLevel` subroutine returns the total combined level of all classes on the actor related to the effect (Either what its attached to or the parent of what it is attached to).
+
+If `actorId?` is present, uses the actor with `actorId` instead if it exists. This will not automatically update the effect when the specified actor does if the item is not attached, to force an update change any field on the attached actor or reload.
+
+**Core Rules This Applies To:**
+
+- 🤷
+
+#### totalClasses
+
+```
+$totalClasses[actorId?]
+```
+
+The `totalClasses` subroutine returns the total number of classes of the actor related to the effect. To create the item **Onion Ring**'s effect you would use `2*$totalClasses[]`.
+
+If `actorId?` is present, uses the actor with `actorId` instead if it exists. This will not automatically update the effect when the specified actor does if the item is not attached, to force an update change any field on the attached actor or reload.
+
+**Core Rules This Applies To:**
+
+- Onion Ring
