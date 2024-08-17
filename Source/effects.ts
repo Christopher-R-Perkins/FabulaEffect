@@ -74,7 +74,26 @@ const subroutines: { [couroutine: string]: (args: string, data: unknown) => stri
 		if (!skill) return "0";
 		return String(skill.system.level.value);
 	},
-	
+
+	classLevel: (args: string, data: unknown): string => {
+		const [className, id] = splitArgs(args);
+		const actor = getActor(data as FUData, id);
+
+		if (!actor) {
+			Logger.Err(
+				`actorLevel formula subroutine invoked on object that is not an actor, is not a child an of an actor, nor was provided a valid actor id: ${data}`
+			);
+			return "0";
+		}
+		
+		const fuClass = [...actor.items.values()].find<FuClass>((item): item is FuClass =>  {
+			return item.name === className && isFUClass(item);
+		});
+		
+		if (!fuClass) return "0";
+		return String(fuClass.system.level.value);
+	},
+
 	classesLevel: (args: string, data: unknown): string => {
 		const [id] = splitArgs(args);
 		const actor = getActor(data as FUData, id);
@@ -91,6 +110,24 @@ const subroutines: { [couroutine: string]: (args: string, data: unknown) => stri
 		}).reduce( (prev, curr) => prev + curr.system.level.value, 0);
 		
 		return String(totalClassesValue);
+	},
+	
+	totalClasses: (args: string, data: unknown): string => {
+		const [id] = splitArgs(args);
+		const actor = getActor(data as FUData, id);
+
+		if (!actor) {
+			Logger.Err(
+				`actorLevel formula subroutine invoked on object that is not an actor, is not a child an of an actor, nor was provided a valid actor id: ${data}`
+			);
+			return "0";
+		}
+		
+		const numberOfClasses = [...actor.items.values()].filter<FuClass>((item): item is FuClass => {
+			return isFUClass(item);
+		}).length;
+		
+		return String(numberOfClasses);
 	}
 };
 
